@@ -7,14 +7,14 @@ export const todosPartidos = [];
 // Clase para almacenar los objetos Partido
 export class Partido {
 
-    constructor(nombre, siglas, idiologia, descripcion, cantidadVotos, imgLogo) {
+    constructor(nombre, siglas, ideologia, descripcion, cantidadVotos, imgLogo) {
         this._cantidadEscannoCongreso = 0;
 
         // Agregar la instancia al array global
         todosPartidos.push(this);
         this._nombre = nombre;
         this._siglas = siglas;
-        this._idiologia = idiologia;
+        this._idiologia = ideologia;
         this._descripcion = descripcion;
         this._cantidadVotos = cantidadVotos;
         this._imgLogo = imgLogo;
@@ -37,11 +37,11 @@ export class Partido {
         this._siglas = value;
     }
 
-    get idiologia() {
+    get ideologia() {
         return this._idiologia;
     }
 
-    set idiologia(value) {
+    set ideologia(value) {
         this._idiologia = value;
     }
 
