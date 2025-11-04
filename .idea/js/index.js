@@ -61,7 +61,7 @@ function crearIdeologia(partido) {
     // Iteración de los objetos de la lista
     partido.ideologia.forEach(idea => {
         const elementoLista = document.createElement('li');
-        elementoLista.innerText = idea.innerText;
+        elementoLista.innerText = idea;
         lista.appendChild(elementoLista);
     })
     tituloIdeo.appendChild(lista);
