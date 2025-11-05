@@ -14,7 +14,7 @@ window.onload = () => {
 }
 
 // Función para crear las imagenes
-function crearImg(partido) {
+function crearLogo(partido) {
     const logo = document.createElement('img');
     logo.src = partido.imgLogo;
     logo.alt = `Logo de ${partido.nombre}`;
@@ -68,6 +68,32 @@ function crearIdeologia(partido) {
     return tituloIdeo;
 }
 
+
+// Función para crear cantidad de votos
+function crearVotos(partido) {
+
+    // Creación de div para almacenarlo
+    const divVotos = document.createElement('div');
+
+    // Creación de titulo
+    const tituloVotos = document.createElement('h4');
+
+    // Creación de input para ingresar la cantidad de votos
+    const inputVotos = document.createElement('input');
+    inputVotos.placeholder = "Votos"
+    inputVotos.type = 'text';
+    inputVotos.addEventListener('input', () => {
+        partido.cantidadVotos(inputVotos.value);
+    })
+
+    // Agregar input al div
+    divVotos.appendChild(tituloVotos);
+    divVotos.appendChild(inputVotos);
+
+    // retorno
+    return divVotos;
+}
+
 // Funcion para crear los elementos
 export function crearElementos() {
     const div = document.createElement('div');
@@ -78,10 +104,13 @@ export function crearElementos() {
         divElemento.id = partido.siglas;
 
         // Logo
-        const logo = crearImg(partido);
+        const logo = crearLogo(partido);
 
         // Info del partido
         const info = crearInfo(partido);
+
+        // Votos del partido
+        const votos = crearVotos(partido);
 
         // Ingreso de datos
         divElemento.appendChild(logo);
