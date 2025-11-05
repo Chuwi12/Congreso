@@ -41,10 +41,24 @@ function crearInfo(partido) {
     const desc = document.createElement('p');
     desc.innerText = partido.descripcion;
 
+    // Votos
+    const votos = crearVotos(partido);
+
+    // Porcentaje de votos
+    const porcentaje = document.createElement('p');
+    porcentaje.innerText = `Porcentaje de votos: ${partido.calcPorcentage().toFixed(2)}%`;
+
+    // Escaños
+    const escannos = document.createElement('p');
+    escannos.innerText = `Escaños en el congreso: ${partido.calcEscannos()}`;
+
     info.appendChild(titulo);
     info.appendChild(sigla);
     info.appendChild(ideologia);
     info.appendChild(desc);
+    info.appendChild(votos);
+    info.appendChild(porcentaje);
+    info.appendChild(escannos);
     return info;
 }
 
@@ -109,10 +123,6 @@ export function crearElementos() {
 
         // Info del partido
         const info = crearInfo(partido);
-
-        // Votos del partido
-        const votos = crearVotos(partido);
-        info.appendChild(votos);
 
         // Ingreso de datos
         divElemento.appendChild(logo);
