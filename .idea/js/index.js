@@ -115,6 +115,7 @@ export function crearElementos() {
         // Ingreso de datos
         divElemento.appendChild(logo);
         divElemento.appendChild(info);
+        divElemento.appendChild(votos)
         div.appendChild(divElemento);
     });
 
