@@ -97,13 +97,29 @@ function crearVotos(partido) {
     const inputVotos = document.createElement('input');
     inputVotos.placeholder = "Votos"
     inputVotos.type = 'text';
-    inputVotos.addEventListener('input', () => {
-        partido.cantidadVotos(inputVotos.value);
-    })
+
+    // Creación de boton para calcular el pocentage
+    const boton = document.createElement('input');
+    boton.type = 'button';
+    boton.value = 'Mostrar';
+    boton.addEventListener('click', () => {
+
+        // Ingreso de nuevos datos en atributos
+        partido.cantidadVotos = Number(inputVotos.value);
+
+        // Actualizar porcentaje
+        const porcentaje = document.getElementById(`porcentaje-${partido.siglas}`);
+        porcentaje.innerText = `Porcentaje de votos: ${partido.calcPorcentage().toFixed(2)}%`;
+
+        // Actualizar escaños
+        const escannos = document.getElementById(`escanos-${partido.siglas}`);
+        escannos.innerText = `Escaños en el congreso: ${partido.calcEscannos()}`;
+    });
 
     // Agregar input al div
     divVotos.appendChild(tituloVotos);
     divVotos.appendChild(inputVotos);
+    divVotos.appendChild(boton);
 
     // retorno
     return divVotos;
