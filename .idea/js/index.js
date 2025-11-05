@@ -112,11 +112,11 @@ export function crearElementos() {
 
         // Votos del partido
         const votos = crearVotos(partido);
+        info.appendChild(votos);
 
         // Ingreso de datos
         divElemento.appendChild(logo);
         divElemento.appendChild(info);
-        divElemento.appendChild(votos)
         div.appendChild(divElemento);
     });
 
