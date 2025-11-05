@@ -77,6 +77,7 @@ function crearVotos(partido) {
 
     // Creación de titulo
     const tituloVotos = document.createElement('h4');
+    tituloVotos.innerText = 'Votos:'
 
     // Creación de input para ingresar la cantidad de votos
     const inputVotos = document.createElement('input');
