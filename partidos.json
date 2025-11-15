@@ -8,9 +8,9 @@
         "centroizquierda"
       ],
       "descripcion": "Partido político español fundado en 1879, situado entre la socialdemocracia y el centroizquierda.",
-      "cantidadVotos": 0,
-      "cantidadEscannosCongreso": 0,
+      "cantidadVotos": 454,
       "imgLogo": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.psn-psoe.org%2Fwp-content%2Fuploads%2F2024%2F08%2FComunicado_Logo-PSN-PSOE-scaled.jpg.webp&f=1&nofb=1&ipt=c167aabf010e5bee27c6b9d715b9681829da95f471dd9c066beda5c84db5ab3b",
+      "cantidadEscannoCongreso": 120,
       "id": "43bf"
     },
     {
@@ -22,9 +22,9 @@
         "conservadurismo"
       ],
       "descripcion": "Partido político español fundado en 1989, situado entre el centroderecha y la derecha.",
-      "cantidadVotos": 0,
-      "cantidadEscannosCongreso": 0,
+      "cantidadVotos": 789,
       "imgLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Logo_del_PP_%282022%29.svg/330px-Logo_del_PP_%282022%29.svg.png",
+      "cantidadEscannoCongreso": 210,
       "id": "0c9a"
     },
     {
@@ -36,9 +36,9 @@
         "conservadurismo"
       ],
       "descripcion": "Partido político español fundado en 2013, de ideología nacionalista y de extrema derecha.",
-      "cantidadVotos": 0,
-      "cantidadEscannosCongreso": 0,
+      "cantidadVotos": 78,
       "imgLogo": "https://en.wikipedia.org/wiki/Vox_(political_party)",
+      "cantidadEscannoCongreso": 20,
       "id": "50f5"
     },
     {
@@ -51,8 +51,8 @@
       ],
       "descripcion": "Coalición de partidos políticos de izquierda en España, fuerte en intervencionismo estatal y ecologismo.",
       "cantidadVotos": 0,
-      "cantidadEscannosCongreso": 0,
       "imgLogo": "https://izquierdaunida.org/wp-content/uploads/2021/04/logo-web-IU-triangulo-retina.png",
+      "cantidadEscannoCongreso": 0,
       "id": "5ed5"
     },
     {
@@ -65,8 +65,8 @@
       ],
       "descripcion": "Partido político español del País Vasco, de ideología nacionalista vasca y considerado de centro.",
       "cantidadVotos": 0,
-      "cantidadEscannosCongreso": 0,
       "imgLogo": "https://www.eaj-pnv.eus/img/logotipo-eaj-pnv-2025-300.png",
+      "cantidadEscannoCongreso": 0,
       "id": "731c"
     },
     {
@@ -81,8 +81,8 @@
       ],
       "descripcion": "Alianza electoral española fundada el 28 de marzo de 2022 por Yolanda Díaz, concebida como un proyecto para agrupar a la izquierda y progresismo en España. Tiene como objetivo una nueva iniciativa socialdemócrata basada en los derechos laborales y la protección social. :contentReference[oaicite:1]{index=1}",
       "cantidadVotos": 0,
-      "cantidadEscannosCongreso": 0,
       "imgLogo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Sumar_logo.svg/330px-Sumar_logo.svg.png",
+      "cantidadEscannoCongreso": 0,
       "id": "e0ed"
     },
     {
@@ -96,8 +96,8 @@
       ],
       "descripcion": "Partido político español fundado en 1976 legalmente (aunque inspirado en la organización original de 1933) que reivindica el legado de la antigua Falange Española de las JONS. Ha sido descrito como un grupo neofascista, ultranacionalista y xenófobo. :contentReference[oaicite:1]{index=1}",
       "cantidadVotos": 0,
-      "cantidadEscannosCongreso": 0,
       "imgLogo": "https://i2.wp.com/falange.es/wp-content/uploads/2024/11/ROJO_HORIZONTAL-LOGO-FEdelasJONS_LAFALANGE.png?resize=768%2C195&ssl=1",
+      "cantidadEscannoCongreso": 0,
       "id": "9511"
     }
   ]
