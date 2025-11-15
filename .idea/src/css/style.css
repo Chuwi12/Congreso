@@ -1,81 +1,206 @@
-/* Estilos generales */
-body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f7fa;
+/* Reset y configuración base */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
     color: #333;
 }
+
 /* Contenedor principal */
 #divPrincipal {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
 }
 
-/* Cada partido ocupa TODO el ancho */
+/* Tarjeta de cada partido */
 #divPrincipal > div {
-    width: 100%;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
     display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 16px;
-    border-radius: 10px;
-    background: #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    gap: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
 
-/* Logo a la izquierda */
+#divPrincipal > div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo del partido */
 #divPrincipal img {
-    width: 90px;
-    height: auto;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 10px;
+    padding: 0.5rem;
+    background: #f8f9fa;
     flex-shrink: 0;
 }
 
-/* Contenedor de información + votos */
+/* Información del partido */
 .infoPartido {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.8rem;
 }
 
-/* Descripción más ordenada */
+/* Títulos */
+.infoPartido h2 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.infoPartido h3 {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    font-weight: 600;
+    font-style: italic;
+}
+
+.infoPartido h4 {
+    font-size: 1rem;
+    color: #34495e;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+/* Párrafos */
 .infoPartido p {
-    margin-top: 4px;
-    line-height: 1.3rem;
-    text-align: justify;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
 }
 
 /* Lista de ideología */
-.infoPartido h4 ul {
-    margin-top: 6px;
-    padding-left: 18px;
+.infoPartido ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.3rem;
 }
 
-/* BLOQUE DE VOTOS: justo al final del texto */
-#divPrincipal > div > div:last-child {
+.infoPartido ul li {
+    padding: 0.4rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.infoPartido ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* Sección de votos */
+.infoPartido > div {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 160px; /* tamaño fijo y limpio */
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
 
-/* Título votos */
-#divPrincipal > div > div:last-child h4 {
-    margin: 0 0 6px 0;
-}
-
-/* Input */
-#divPrincipal > div > div:last-child input {
-    width: 100%;
-    padding: 6px;
+/* Input de votos */
+.infoPartido input[type="text"] {
+    padding: 0.6rem 1rem;
+    border: 2px solid #ddd;
     border-radius: 6px;
-    border: 1px solid #aaa;
-    outline: none;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease;
+    flex: 1;
+    min-width: 150px;
 }
-#divPrincipal > div > div:last-child input:focus {
-    border-color: #0077ff;
+
+.infoPartido input[type="text"]:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Botón */
+.infoPartido input[type="button"] {
+    padding: 0.6rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.infoPartido input[type="button"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.infoPartido input[type="button"]:active {
+    transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    #divPrincipal {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    #divPrincipal > div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    #divPrincipal img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .infoPartido h2 {
+        font-size: 1.5rem;
+    }
+
+    .infoPartido ul li {
+        text-align: left;
+    }
+
+    .infoPartido > div {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .infoPartido input[type="text"],
+    .infoPartido input[type="button"] {
+        width: 100%;
+        min-width: unset;
+    }
 }
