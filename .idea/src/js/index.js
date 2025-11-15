@@ -6,13 +6,38 @@ import {Partido, todosPartidos} from "./classes/Partido.js";
 
 // Cargar los datos
 window.onload = () => {
-    console.log("Index cargado");
-
     document.addEventListener('cargados', () => {
+        crearBotonGuardar();
         crearElementos();
     });
 }
 
+// Función para crear el botón de guardado
+function crearBotonGuardar() {
+    const contenedorBoton = document.createElement('div');
+    contenedorBoton.id = 'contenedor-guardar';
+    const botonGuardar = document.createElement('button');
+    botonGuardar.id = 'btn-guardar';
+    botonGuardar.innerText = 'Guardar Datos';
+    // Evento click para guardar
+    botonGuardar.addEventListener('click', () => {
+        botonGuardar.disabled = true;
+        botonGuardar.innerText = 'Guardando...';
+        botonGuardar.style.backgroundColor = '#cccccc';
+
+        // Disparar evento de guardado
+        document.dispatchEvent(new Event('guardar'));
+
+        // Resetear botón después de 2 segundos
+        setTimeout(() => {
+            botonGuardar.disabled = false;
+            botonGuardar.innerText = 'Guardar Datos';
+            botonGuardar.style.backgroundColor = '#4CAF50';
+        }, 2000);
+    });
+    contenedorBoton.appendChild(botonGuardar);
+    document.body.insertBefore(contenedorBoton, document.body.firstChild);
+}
 // Función para crear las imagenes
 function crearLogo(partido) {
     const logo = document.createElement('img');
@@ -44,12 +69,14 @@ function crearInfo(partido) {
     // Votos
     const votos = crearVotos(partido);
 
-    // Porcentaje de votos
+    // Porcentaje de votos (CON ID)
     const porcentaje = document.createElement('p');
+    porcentaje.id = `porcentaje-${partido.siglas}`;
     porcentaje.innerText = `Porcentaje de votos: ${partido.calcPorcentage().toFixed(2)}%`;
 
-    // Escaños
+    // Escaños (CON ID)
     const escannos = document.createElement('p');
+    escannos.id = `escanos-${partido.siglas}`;
     escannos.innerText = `Escaños en el congreso: ${partido.calcEscannos()}`;
 
     info.appendChild(titulo);
@@ -96,24 +123,45 @@ function crearVotos(partido) {
     // Creación de input para ingresar la cantidad de votos
     const inputVotos = document.createElement('input');
     inputVotos.placeholder = "Votos"
-    inputVotos.type = 'text';
+    inputVotos.type = 'number'; // Cambiado a number
+    inputVotos.value = partido.cantidadVotos;
 
     // Creación de boton para calcular el pocentage
     const boton = document.createElement('input');
     boton.type = 'button';
-    boton.value = 'Mostrar';
+    boton.value = 'Actualizar';
     boton.addEventListener('click', () => {
+        // Validar que sea un número
+        const nuevosVotos = Number(inputVotos.value);
+
+        if (isNaN(nuevosVotos) || nuevosVotos < 0) {
+            alert('Por favor ingresa un número válido');
+            return;
+        }
 
         // Ingreso de nuevos datos en atributos
-        partido.cantidadVotos = Number(inputVotos.value);
+        partido.cantidadVotos = nuevosVotos;
 
         // Actualizar porcentaje
         const porcentaje = document.getElementById(`porcentaje-${partido.siglas}`);
-        porcentaje.innerText = `Porcentaje de votos: ${partido.calcPorcentage().toFixed(2)}%`;
 
-        // Actualizar escaños
-        const escannos = document.getElementById(`escanos-${partido.siglas}`);
-        escannos.innerText = `Escaños en el congreso: ${partido.calcEscannos()}`;
+        if (porcentaje) {
+            const nuevoPorcentaje = partido.calcPorcentage().toFixed(2);
+            porcentaje.innerText = `Porcentaje de votos: ${nuevoPorcentaje}%`;
+        }
+
+        // Recalcular escaños para TODOS los partidos
+        todosPartidos.forEach(p => {
+            p.calcEscannos();
+        });
+
+        // Actualizar escaños de TODOS los partidos en la interfaz
+        todosPartidos.forEach(p => {
+            const escannos = document.getElementById(`escanos-${p.siglas}`);
+            if (escannos) {
+                escannos.innerText = `Escaños en el congreso: ${p.cantidadEscannoCongreso}`;
+            }
+        });
     });
 
     // Agregar input al div
@@ -126,7 +174,8 @@ function crearVotos(partido) {
 }
 
 // Funcion para crear los elementos
-export function crearElementos() {
+export async function crearElementos() {
+
     const div = document.createElement('div');
     div.id = "divPrincipal";
 
