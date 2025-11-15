@@ -14,7 +14,7 @@ export class Partido {
         todosPartidos.push(this);
         this._nombre = nombre;
         this._siglas = siglas;
-        this._idiologia = ideologia;
+        this._ideologia = ideologia;
         this._descripcion = descripcion;
         this._cantidadVotos = cantidadVotos;
         this._imgLogo = imgLogo;
@@ -38,11 +38,11 @@ export class Partido {
     }
 
     get ideologia() {
-        return this._idiologia;
+        return this._ideologia;
     }
 
     set ideologia(value) {
-        this._idiologia = value;
+        this._ideologia = value;
     }
 
     get descripcion() {
@@ -77,36 +77,42 @@ export class Partido {
         this._cantidadEscannoCongreso = value;
     }
 
-// Método para calcular el porcentaje de votos sobre el total
+    // Método para calcular el porcentaje de votos sobre el total
     calcPorcentage() {
-        return (this.cantidadVotos * 100) / votosTotales;
+        // Calcular el total actual de votos de todos los partidos
+        const totalVotosActual = todosPartidos.reduce((sum, p) => sum + p.cantidadVotos, 0);
+
+        if (totalVotosActual === 0) return 0;
+
+        return (this.cantidadVotos * 100) / totalVotosActual;
     }
 
-    // Método para calcular los escaños según D’Hondt
+    // Método para calcular los escaños según D'Hondt
     calcEscannos() {
         let cocientes = [];
 
         // Generar cocientes para todos los partidos
         for (let partido of todosPartidos) {
             for (let divisor = 1; divisor <= escanosTotales; divisor++) {
-                cocientes.push({ cociente: partido.cantidadVotos / divisor, partido: partido });
+                cocientes.push({
+                    cociente: partido.cantidadVotos / divisor,
+                    partido: partido
+                });
             }
         }
 
         // Ordenar cocientes de mayor a menor
         cocientes.sort((a, b) => b.cociente - a.cociente);
 
-        // Contar cuántos cocientes corresponden a este partido
-        let escanos = 0;
+        // Reiniciar escaños de todos los partidos
+        todosPartidos.forEach(p => p._cantidadEscannoCongreso = 0);
+
+        // Asignar los escaños según los mejores cocientes
         for (let i = 0; i < escanosTotales; i++) {
-            if (cocientes[i].partido === this) {
-                escanos += 1;
-            }
+            cocientes[i].partido._cantidadEscannoCongreso += 1;
         }
 
-        // Actualizar propiedad de la instancia
-        this._cantidadEscannoCongreso = escanos;
-        return escanos;
+        // Retornar los escaños de este partido
+        return this._cantidadEscannoCongreso;
     }
 }
-
